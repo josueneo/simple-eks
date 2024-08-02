@@ -13,7 +13,7 @@ Optional
 * Install aws cli
 
 ## Steps to build an EKS cluster
-Modify the terraform.tfvars file according to your needs, it is best to create a VPC and networks, then interconnect the rest of your systems.
+Modify the terraform.tfvars file according to your needs, it will create a VPC and some subnets, one can interconnect the rest of your systems afterwards.
 
 ```
 terraform init
