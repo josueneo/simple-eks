@@ -1,6 +1,11 @@
-variable create_kubeconfig{
+variable "create_kubeconfig" {
   description = "Set to 1 if you want to create a .kube/config file for your cluster"
-  default = 0
+  default     = 0
+}
+variable "vpc_id" {
+  description = "IF reusing a vpc, set the id here"
+  type        = string
+  default     = null
 }
 variable "region" {
   description = "Region to deploy resources"
@@ -19,7 +24,7 @@ variable "k8s_version" {
 
 variable "k8s_tags" {
   description = "Tags to add to the AWS Resource"
-  default = {}
+  default     = {}
 }
 
 variable "k8s_kubeconfig" {
@@ -46,14 +51,3 @@ variable "subnet_private" {
   description = "Segment for private space"
   default     = ["10.20.0.0/25", "10.20.1.0/25"]
 }
-
-variable "subnet_intra" {
-  description = "Segment for intra space"
-  default     = ["10.20.0.128/25", "10.20.1.128/25"]
-}
-
-variable "subnet_public" {
-  description = "Segment for public space"
-  default     = ["10.20.2.0/27", "10.20.2.32/27"]
-}
-

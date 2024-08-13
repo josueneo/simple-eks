@@ -6,8 +6,8 @@ module "eks" {
   cluster_version                = var.k8s_version
   tags                           = var.k8s_tags
   cluster_endpoint_public_access = true
-  vpc_id                         = module.vpc.vpc_id
-  subnet_ids                     = module.vpc.private_subnets
+  vpc_id                         = local.vpc.id
+  subnet_ids                     = var.subnet_private
 
   access_entries = {
     # One access entry with a policy associated
@@ -38,7 +38,7 @@ module "eks" {
 }
 
 resource "null_resource" "kubeconfig" {
-  count = var.create_kubeconfig
+  count      = var.create_kubeconfig
   depends_on = [module.eks]
   provisioner "local-exec" {
     interpreter = ["/bin/bash", "-c"]
